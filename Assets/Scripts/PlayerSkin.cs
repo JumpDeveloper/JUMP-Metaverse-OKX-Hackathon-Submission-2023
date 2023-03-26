@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkin : NetworkBehaviour
+public class PlayerSkin : MonoBehaviour
 {
     private GameObject avtrPanel;
 
@@ -104,7 +104,10 @@ public class PlayerSkin : NetworkBehaviour
             GetComponent<Animator>().avatar = eraClothes[ind].female_avtr;
         }
     }
-
+    internal void Mintimage(string url)
+    {
+        GetComponent<CallMintNFT>().MintNFTJS(url);
+    }
     #region Avatar UI
 
     [SerializeField]
@@ -201,4 +204,7 @@ public struct EraClothes
 
     public bool isPurchasd;
     public float amount;
+
+    public string female_url;
+    public string male_url;
 }

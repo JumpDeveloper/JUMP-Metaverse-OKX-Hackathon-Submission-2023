@@ -21,13 +21,16 @@ public class AvatarTilr : MonoBehaviour
 
     private bool _isPurchased = false;
 
+    internal string url;
+
     private void Start()
     {
         purhcase_btn.onClick.AddListener(PurchaseBtnClicked);
     }
 
-    internal void SetEraYr(int yr, int isMale, Sprite sprite, bool isPurchased, float amount)
+    internal void SetEraYr(int yr, int isMale, Sprite sprite, bool isPurchased, float amount,string _url)
     {
+        url = _url;
         eraYear = yr;
         image.sprite = sprite;
         _isMale = isMale;

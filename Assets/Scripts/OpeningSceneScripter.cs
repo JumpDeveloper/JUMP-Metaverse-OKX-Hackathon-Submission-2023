@@ -92,20 +92,22 @@ public class OpeningSceneScripter : MonoBehaviour
     //All the button calls are from editor
     public void ConnectWalletBtnClicked()
     {
+        GetComponent<WebLogin>().OnLogin();
         //Assign walletidtxt herer and also in playerPrefs
         ShowHideAllPanels(MAppPanel);
     }
 
     public void MAppBtnClicked()
     {
+        walletid_txt.text= PlayerPrefs.GetString("Account");
         ava_anim.gameObject.SetActive(true);
         ShowHideAllPanels(PropertyPanel);
     }
 
     public void Proprty_ConfirmBtn_Clicked()
     {
-        if (string.IsNullOrEmpty(username_IF.text))
-            return;
+        //if (string.IsNullOrEmpty(username_IF.text))
+        //    return;
 
         PlayerPrefs.SetString(PPm.Username, username_IF.text.ToString());
 

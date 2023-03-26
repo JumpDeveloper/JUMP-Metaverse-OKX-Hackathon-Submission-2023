@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class LocalPlayerBehavior : NetworkBehaviour
+public class LocalPlayerBehavior : MonoBehaviour
 {
     private void Start()
     {
-        gameObject.name = GetComponent<NetworkIdentity>().netId.ToString();
-        gameObject.tag = (isLocalPlayer) ? "Player" : "Enemy";
+        VegasLoader.instance.LoadVegas();
+        // gameObject.name = GetComponent<NetworkIdentity>().netId.ToString();
+       // gameObject.tag = (isLocalPlayer) ? "Player" : "Enemy";
     }
 
     #region Player Skinning
@@ -91,8 +92,8 @@ public class LocalPlayerBehavior : NetworkBehaviour
 
         }
 
-        if (!isLocalPlayer)
-            return;
+        //if (!isLocalPlayer)
+        //    return;
             //if(transform.position.y < 0 || transform.position.y > 10)
             //{
             //    transform.position = new Vector3(transform.position.x,
@@ -109,12 +110,12 @@ public class LocalPlayerBehavior : NetworkBehaviour
 
     #endregion Name Bubble
 
-    public override void OnStartLocalPlayer()
-    {
-        base.OnStartLocalPlayer();
+    //public override void OnStartLocalPlayer()
+    //{
+    //    base.OnStartLocalPlayer();
 
-        Cmd_SetDisplayName(PlayerPrefs.GetString(PPm.Username));
+    //    Cmd_SetDisplayName(PlayerPrefs.GetString(PPm.Username));
 
-        VegasLoader.instance.LoadVegas();
-    }
+    //    VegasLoader.instance.LoadVegas();
+    //}
 }

@@ -15,7 +15,7 @@ namespace StarterAssets
     [RequireComponent(typeof(PlayerInput))]
 #endif
 
-    public class ThirdPersonController : NetworkBehaviour
+    public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -125,20 +125,20 @@ namespace StarterAssets
             }
         }
 
-        public override void OnStartLocalPlayer()
-        {
-            //base.OnStartLocalPlayer();
+        //public override void OnStartLocalPlayer()
+        //{
+        //    //base.OnStartLocalPlayer();
 
-            GameObject.FindGameObjectWithTag("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>().Follow = CinemachineCameraTarget.transform;
-        }
+        //    GameObject.FindGameObjectWithTag("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>().Follow = CinemachineCameraTarget.transform;
+        //}
 
-        public override void OnStartAuthority()
-        {
-            base.OnStartAuthority();
+        //public override void OnStartAuthority()
+        //{
+        //    base.OnStartAuthority();
 
-            var playerInput = GetComponent<PlayerInput>();
-            if (playerInput != null) playerInput.enabled = true;
-        }
+        //    var playerInput = GetComponent<PlayerInput>();
+        //    if (playerInput != null) playerInput.enabled = true;
+        //}
 
         private void Awake()
         {
@@ -151,6 +151,9 @@ namespace StarterAssets
 
         private void Start()
         {
+            GameObject.FindGameObjectWithTag("PlayerFollowCamera").GetComponent<CinemachineVirtualCamera>().Follow = CinemachineCameraTarget.transform;
+            var playerInput = GetComponent<PlayerInput>();
+                if (playerInput != null) playerInput.enabled = true;
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -171,8 +174,8 @@ namespace StarterAssets
 
         private void Update()
         {
-            if (!isLocalPlayer)
-                return;
+           // if (!isLocalPlayer)
+             //   return;
 
             _hasAnimator = TryGetComponent(out _animator);
 

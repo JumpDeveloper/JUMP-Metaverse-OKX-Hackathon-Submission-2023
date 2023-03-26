@@ -34,7 +34,8 @@ public class AvatarPanel : MonoBehaviour
             GameObject obj = Instantiate(avtrTile, gObj);
             obj.GetComponent<AvatarTilr>().SetEraYr(item.eras[0], isMale,
                                         (isMale==1)?item.male_sprite:item.female_sprite,
-                                        item.isPurchasd, item.amount);
+                                        item.isPurchasd, item.amount,
+                                        (isMale == 1) ? item.male_url : item.female_url);
             obj.GetComponent<AvatarTilr>().equip_btn.onClick.AddListener(() =>
             {
                     playerSkin.PutPlayerSkin(obj.GetComponent<AvatarTilr>().EraYr);
@@ -43,6 +44,7 @@ public class AvatarPanel : MonoBehaviour
             obj.GetComponent<AvatarTilr>().purhcase_btn.onClick.AddListener(() =>
             {
                 playerSkin.UpdatePurchase(obj.GetComponent<AvatarTilr>().EraYr);
+                playerSkin.Mintimage(obj.GetComponent<AvatarTilr>().url);
             });
 
         }
